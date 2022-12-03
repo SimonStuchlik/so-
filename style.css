@@ -47,31 +47,30 @@ header{
 }
 
 .frame{
-    margin-top: 100px;
-    margin-left: 100px;
-    width: 500px;
-    height: 450px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     border-radius: 25px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    
-}
-
-.frame .header-image{
-    width: 500px;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 25px 25px 0px 0px;
-}
-
-.frame{
+    margin: 20px;
     border: 0px;
     outline: 0px;
     text-decoration: none;
     color:black;
     background-color: #f2f2f2;
 }
+
+.frame .header-image{
+    width: auto;
+    height: auto;
+    max-height: 355px;
+    object-fit: cover;
+    border-radius: 25px 25px 0px 0px;
+}
+
+/* .frame:hover{
+    background-color: #e6e6e6;
+} */
 
 .frame h1{
     padding: 25px;
@@ -98,8 +97,9 @@ header{
 
 
 .cards{
-    display: grid;
-    grid-template-columns: auto auto auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
     .search input[type=text]{
