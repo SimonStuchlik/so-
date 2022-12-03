@@ -2,6 +2,7 @@
 body, *{
   margin: 0;  
   padding: 0;
+  font-family: 'Montserrat';
 }
 
 .logo{
@@ -39,6 +40,7 @@ header{
     font-size: larger;
     color: black;
     background-color: white;
+    transition: all 0.4s ease;
  }
  .hore:hover{
     background-color:black;
@@ -211,4 +213,56 @@ header{
    flex-direction: row; 
 justify-content: space-between;
 
+}
+
+/*index.html welcome text*/
+
+.center {
+  display: flex;
+  margin: 1em auto;
+  width: 70%;
+  height: auto;
+  background-color: #fff204;
+  text-align: center;
+  justify-content: space-between;
+  flex-direction: row;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
+  align-items: center;
+}
+
+.center img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.center .text-welcome {
+    background-color: #fff204;
+    opacity: 0.8;
+    position: absolute;
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
+    width: 400px; 
+    border-radius: 10px;
+}
+
+.center .text-welcome h1 {
+  font-size: 4em;
+  font-weight: 700;
+  color: #000;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.center .text-welcome p {
+  font-size: 1.5em;
+  font-weight: 400;
+  color: #000;
+  margin: 0;
+  padding: 0;
+  text-align: center;
 }
