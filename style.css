@@ -165,15 +165,30 @@ header{
     
 }
 .kontakt{
-    margin: 10px;
-    padding: left;
-    text-align: left; 
-    font-size: 25px ;
-    
+    display: flex;
+    flex-direction: row;
+    margin-top: 1em;
 }
 
+.contact-item {
+    margin: 1em;
+    align-items: center;
+    background-color: #fff204;
+    padding: 1em;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 0,3em;
+    transition: all 0.4s ease;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
 
-
+.contact-item:hover {
+    background-color: white;
+    color: ;
+    cursor: pointer;
+    transform: scale(1.05);
+}
 
 .odoslat{
     background-color: gray;
@@ -209,10 +224,9 @@ header{
 
 .abc{
     display: flex;
-    text-align: center;
-   flex-direction: row; 
-justify-content: space-between;
-
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 /*index.html welcome text*/
