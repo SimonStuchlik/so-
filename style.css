@@ -185,7 +185,6 @@ header{
 
 .contact-item:hover {
     background-color: white;
-    color: ;
     cursor: pointer;
     transform: scale(1.05);
 }
