@@ -27,74 +27,30 @@
                     </div>
                 </li>
             </ul>
-            <div class="container">
-                <div class="search">
-                    <form action="#">
-                        <input type="text"
-                            placeholder=" Search Courses"
-                            name="search">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                           <button class="lupa">haldaj</button>
-                           
-                        
-                    </form>
-                </div>
-            </div>
             
         </header>
         <section class="cards">
-        
-        <a class="frame" href="produkt.html">
-            <img class="header-image" src="pila.png" alt="">
-            <h1>píly</h1>
-            <ul>
-                <li><img class="small-image" src="pila-mala.png" alt=""></li>
-                <li><img class="small-image" src="pila2-mala.png" alt=""></li>
-                <li><img class="small-image" src="pila.png" alt=""></li>
-                <li><img class="small-image" src="pili2.jpg" alt=""></li>
-                <li><img class="small-image" src="smirgel.jpg" alt=""></li>
-            </ul>
-
-        </a>
-        <a class="frame" href="index.html">
-            <img class="header-image" src="vrtak.png" alt="">
-            <h1>vrtáky</h1>
-            <ul>
-                <li><img class="small-image" src="vrtak2.png" alt=""></li>
-                <li><img class="small-image" src="vrtak3.png" alt=""></li>
-                <li><img class="small-image" src="vrtak4.png" alt=""></li>
-                <li><img class="small-image" src="vrtak5.png" alt=""></li>
-                <li><img class="small-image" src="vrtak6.png" alt=""></li>
-            </ul> 
-        </a>
-            <a class="frame" href="index.html">
-                <img class="header-image" src="stopkovafreza.png" alt="">
-                <h1>stopkové frézy</h1>
-                <ul>
-                    <li><img class="small-image" src="stopkovafreza2.png" alt=""></li>
-                    <li><img class="small-image" src="stopkovafreza3.png" alt=""></li>
-                    <li><img class="small-image" src="stopkovafreza4.png" alt=""></li>
-                    <li><img class="small-image" src="stopkovafreza5.png" alt=""></li>
-                    <li><img class="small-image" src="stopkovafreza6.png" alt=""></li>
-                </ul>
-
-        </a>
-       
-        <a class="frame" href="index.html">
-            <img class="header-image" src="stopkovafreza.png" alt="">
-            <h1>stopkové frézy</h1>
-            <ul>
-                <li><img class="small-image" src="stopkovafreza2.png" alt=""></li>
-                <li><img class="small-image" src="stopkovafreza3.png" alt=""></li>
-                <li><img class="small-image" src="stopkovafreza4.png" alt=""></li>
-                <li><img class="small-image" src="stopkovafreza5.png" alt=""></li>
-                <li><img class="small-image" src="stopkovafreza6.png" alt=""></li>
-            </ul>
-
-    </a>
 
     </section>
             
+    <script>
+       const data = localStorage.getItem('products');
+         const products = JSON.parse(data);
+        //  console.log(products);
+         const productsContainer = document.querySelector('.cards');
+         products.forEach(product => {
+             const productElement = document.createElement('div');
+             productElement.classList.add('product');
+             productElement.innerHTML = `
+             <div class="frame">
+                 <img class="product-img" src="${product.img}" alt="${product.name}">
+                 <h1>${product.name}</h1>
+                 <button class="add-to-cart">Add to cart</button>
+             </div>
+             `;
+             productsContainer.appendChild(productElement);
+         });
+    </script>
         </body>
 
       

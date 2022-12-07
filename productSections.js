@@ -35,7 +35,8 @@ productsS.addEventListener('click', (e) => {
             querySnapshot.forEach((doc) => {
                 test.push(doc.data());
             })
-            console.log(test);
+            localStorage.setItem('products', JSON.stringify(test));
+            window.location.href = 'eshop.html';
         });
     }
 })

@@ -60,13 +60,17 @@ header{
     flex-direction: column;
     border-radius: 25px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    margin: 20px;
+    margin: 1em;
     border: 0px;
     outline: 0px;
     text-decoration: none;
     color:black;
     background-color: #f2f2f2;
     transition: all 0.4s ease;
+}
+
+.product {
+    margin-top: 2em;
 }
 
 .frame .header-image{
@@ -110,7 +114,7 @@ header{
 .cards{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 
@@ -295,7 +299,7 @@ header{
     height: auto;
     background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin: 1em;
+    margin: 2em;
     align-items: center;
     justify-content: center;
     transition: all 0.4s ease;
@@ -355,4 +359,11 @@ header{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+
+ .product-img {
+    max-height: 285px;
+    max-width: 285px;
+    object-fit: cover;
+    border-radius: 25px;
   }
