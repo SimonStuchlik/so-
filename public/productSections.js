@@ -19,15 +19,15 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
     productsS.innerHTML = productSections.map((productSection) => `
         <div class="card">
             <h3 class="card-title">${productSection.name}</h3>
-            <img src="${productSection.img}" alt="${productSection.name}">
-            <button class="btn btn-primary" id="section__button--${productSectionIds[productSections.indexOf(productSection)]}">View Products</button>
+            <img class= "sell_img"src="${productSection.img}" alt="${productSection.name}">
+            <button class="wiew_button" id="section__button--${productSectionIds[productSections.indexOf(productSection)]}">View Products</button>
         </div>` 
     ).join('');
 });
 
 //delete productSection
 productsS.addEventListener('click', (e) => {
-    if(e.target.classList.contains('btn-primary')){
+    if(e.target.classList.contains('wiew_button')){
         let id = e.target.id.split('--')[1];
         var ref = collection(db, "/productSections/", id + '/1');
         let test = [];

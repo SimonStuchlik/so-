@@ -9,8 +9,7 @@ body, *{
     max-width: 150px;
     max-height: 60px;
     margin-left: 20px;
-    border-radius: 50%;
-    border: 2px solid yellow;
+
     float: left;
 }
 header{
@@ -210,13 +209,11 @@ header{
     width: 35px;
     height: 35px;
  }
- .contactext{ 
-  text-align: left;
-  font-size: large;
+ 
 
 
 
- }
+ 
 
 .abc{
     display: flex;
@@ -303,7 +300,7 @@ header{
     align-items: center;
     justify-content: center;
     transition: all 0.4s ease;
-    animation: createBox 1.5s;
+    animation: createBox 1.5s; 
 }
 .card:hover {
     transform: scale(1.02);
@@ -367,3 +364,77 @@ header{
     object-fit: cover;
     border-radius: 25px;
   }
+  .wiew_button{
+    text-align: center ;
+    background-color:yellow; 
+    color:  black; 
+    border-radius: none;
+    margin-top: auto;
+    padding: auto;
+    height: 50px; 
+    width: 100%;
+    
+    
+  
+  } 
+ /*github*/
+  
+  body{ 
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+     background-image: url("1573606.jpg"); 
+    background-size: cover;
+    background-position: center;
+  }
+  .sign-up-form{
+    width: 300px;
+    
+    
+    padding: 20px;
+    margin: 8% auto 0;
+    text-align: center;
+  }
+  .sign-up-form h1{
+    color: #FDC500;
+    margin-bottom: 30px;
+  }
+  .input-box{
+    border-radius: 20px;
+    padding: 10px;
+    margin: 10px -10px;
+    width: 100%;
+    border: 1px solid;
+    outline: none;
+    ;
+  }
+  
+  .Sign-button{
+    background-color: #FDC500;
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 15px;
+    margin: 10px 0 ;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  
+  }
+  
+ 
+  svg{
+    width: 70px;
+    margin-top: -100px;
+    color: #CEB01E;
+  }
+  .sign-up-form p {
+    color: #D6B419;
+    
+    font-size: 20px;
+  }
+  a {
+    font-size: 25px;
+    color: #FEE060;
+  }
+ 
