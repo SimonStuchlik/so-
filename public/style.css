@@ -66,6 +66,7 @@ header{
     color:black;
     background-color: #f2f2f2;
     transition: all 0.4s ease;
+    
 }
 
 .product {
@@ -301,6 +302,8 @@ header{
     justify-content: center;
     transition: all 0.4s ease;
     animation: createBox 1.5s; 
+    
+
 }
 .card:hover {
     transform: scale(1.02);
@@ -370,7 +373,6 @@ header{
     color:  black; 
     border-radius: none;
     margin-top: auto;
-    padding: auto;
     height: 50px; 
     width: 100%;
     
