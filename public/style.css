@@ -13,12 +13,9 @@ body, *{
     float: left;
 }
 header{
-    height: 100px;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    background-color: white;
     align-items: center;
+    justify-content: space-between;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 
@@ -322,35 +319,101 @@ header{
     object-fit: cover;
 }
 
-/*search bar*/
-.search {
-    width: 100%;
-    position: relative;
-    display: flex;
-    margin-bottom: 1.5em;
-  }
-  
-  .search input {
-    width:300px;
-    height:30px; 
-    border-right: none;
-    padding: 5px;
-    height: 20px;
-    border-radius: 5px 0 0 5px;
-    outline: none;
 
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  margin-left: 20px;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+}
+
+.navbar a {
+  margin-right: 20px;
+}
+
+form {
+  margin-right: 20px;
+}
+
+@media (max-width: 600px) {
+  header {
+    flex-wrap: wrap;
   }
   
-  .searchButton {
-    width: 40px;
-    height: 34px;
-    background: #fff204;
+  .logo {
+    margin-left: 0;
+    margin-bottom: 10px;
+    display: block;
+    width: 100%;
     text-align: center;
-    color: #fff;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-    font-size: 20px;
   }
+
+  .navbar {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .navbar a {
+    margin-right: 0;
+    margin-bottom: 10px;
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  form {
+    margin-right: 0;
+    margin-bottom: 10px;
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .navbar {
+    display: none;
+  }
+  .hamburger-menu {
+    display: block;
+    cursor: pointer;
+  }
+  .bar {
+    width: 30px;
+    height: 3px;
+    margin: 6px 0;
+    background-color: black;
+    transition: all 0.3s ease;
+  }
+  .change .bar:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+  }
+  .change .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .change .bar:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+  }
+}
+
+.navbar.show{
+  display:block;
+  transition: all 0.3s ease;
+}
+
+
+
+
   
   /*Resize the wrap to see the search bar change!*/
   .wrap{
