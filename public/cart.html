@@ -24,8 +24,9 @@
               <button type="submit">Search</button>
             </form>
             <div class="cart">
-              <img src="https://img.icons8.com/ios-glyphs/30/null/shopping-cart--v1.png"/>
-              <span class="cart-count"></span>
+              <a style="text-decoration: none; color: black;" href="./cart.html"><img src="https://img.icons8.com/ios-glyphs/30/null/shopping-cart--v1.png"/>
+                <span class="cart-count"></span>
+              </a>
             </div>
           </div>
           <div class="hamburger-menu">
@@ -35,6 +36,46 @@
           </div>
         </nav>
       </header>
+
+
+          <div class="cart-items"></div>
+
+            <script>
+              //get cart items from local storage
+              let cartItems = localStorage.getItem('cart');
+              
+              //display cart items
+              cartItems = JSON.parse(cartItems);
+              let cartItemsContainer = document.querySelector('.cart-items');
+
+              cartItems.forEach(cartItem => {
+                let cartItemDiv = document.createElement('div');
+                cartItemDiv.classList.add('cart-item');
+                cartItemDiv.innerHTML = `
+                  <img src="https://img.icons8.com/ios-glyphs/30/null/shopping-cart--v1.png"/>
+                  <span class="cart-item-title">${cartItem.name}</span>
+                  <span class="cart-item-price">${cartItem.price}</span>
+                  <span class="cart-item-quantity">${cartItem.quantity}</span>
+                  <button class="btn btn-danger" type="button">REMOVE</button>
+                `;
+                cartItemsContainer.appendChild(cartItemDiv);
+
+                //remove cart item
+                cartItemDiv.addEventListener('click', (event) => {
+                  if(event.target.classList.contains('btn-danger')) {
+                    let cartItemTitle = event.target.parentElement.querySelector('.cart-item-title').innerText;
+                    cartItems.forEach((cartItem, index) => {
+                      if(cartItem.name === cartItemTitle) {
+                        cartItems.splice(index, 1);
+                      }
+                    });
+                    localStorage.setItem('cart', JSON.stringify(cartItems));
+                    location.reload();
+                  }
+                });
+              });
+            </script>
+
           <script src="./navbar.js"></script>
     </body>
 
