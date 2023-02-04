@@ -49,7 +49,7 @@ products.forEach(product => {
   productElement.innerHTML = `
     <div class="frame">
       <img class="product-img" src="${product.img}" alt="${product.name}">
-      <h1>${product.name}</h1>
+      <h1 class="product-name">${product.name}</h1>
       <button class="wiew_button">Add to cart</button>
     </div>
   `;
@@ -88,6 +88,25 @@ products.forEach(product => {
       localStorage.setItem('cart', JSON.stringify(cart));
       updateCartCount();
       console.log(cart);
+    }
+  });
+
+  //display product detail 
+  productElement.addEventListener('click', (e) => {
+    if (e.target.classList.contains('product-img') || e.target.classList.contains('product-name')) {
+      //reset product detail
+      localStorage.removeItem('product-detail');
+      const productData = {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        img: product.img,
+        quantity: 1
+      };
+      //save product detail to local storage
+      localStorage.setItem('product-detail', JSON.stringify(productData));
+      //redirect to product detail page
+      window.location.href = './produkt.html';
     }
   });
 });

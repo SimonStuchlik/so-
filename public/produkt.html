@@ -37,13 +37,13 @@
         </nav>
       </header>
 
-      <div class="product">
-        <div class="product-image">
+      <div class="product-detail">
+        <div class="product-detail-image">
           <img src="https://content.ostermann.eu/webcontent/content/mamdata/Sammelordner/740-11-2_D4-Leime_7409037_ipic1_intl.jpg" alt="product">
         </div>
         <div class="product-details">
-          <h1 class="product-title">Product Title</h1>
-          <p class="product-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, quod.</p>
+          <h1 class="product-name"></h1>
+          <p class="product-description"></p>
         </div>
         <div class="product-price">
           <span>$ 19.99</span>
@@ -56,5 +56,16 @@
 
 
           <script src="./navbar.js"></script>
+          <script>
+            //get product info from local storage
+            let product = localStorage.getItem("product-detail");
+            product = JSON.parse(product);
+            console.log(product);
+
+            //set product info to html
+            document.querySelector(".product-detail-image img").src = product.img;
+            document.querySelector(".product-name").innerHTML = product.name;
+
+          </script>
     </body>
 </html>
