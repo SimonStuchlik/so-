@@ -36,6 +36,7 @@ productsS.addEventListener('click', (e) => {
                 test.push(doc.data());
             })
             localStorage.setItem('products', JSON.stringify(test));
+            console.log(test);
             window.location.href = 'eshop.html';
         });
     }

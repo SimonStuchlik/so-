@@ -611,4 +611,15 @@ form {
     border-radius: 5px;
     cursor: pointer;
   }
+
+
   
+  .add-to-cart:hover {
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: all 0.4s ease;
+  }

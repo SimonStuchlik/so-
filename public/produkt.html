@@ -1,71 +1,111 @@
 <!DOCTYPE html>
 <html>
-    <title>pilar</title>
-    <link rel="images"  href="logonove.png">
-    <head>
-     <meta charset="UTF-8" >
-     <link rel="images"  href="logonove.png">
-     <link rel="stylesheet" href="style.css">
-     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-    </head>
+<title>pilar</title>
+<link rel="images" href="logonove.png">
 
-    <body>
-       
-      <header>
-        <img class="logo" src="logonove.png" alt="logo">
-        <nav>
-          <div class="navbar">
-            <a href="./index.html">Domov</a>
-            <a href="./kontakt.html">Kontakt</a>
-            <a href="./eshop.html">Eshop</a>
-            <a href="./ucet.html">Login</a>
-            <form>
-              <input type="text" placeholder="Search...">
-              <button type="submit">Search</button>
-            </form>
-            <div class="cart">
-              <a style="text-decoration: none; color: black;" href="./cart.html"><img src="https://img.icons8.com/ios-glyphs/30/null/shopping-cart--v1.png"/>
-                <span class="cart-count"></span>
-              </a>
-            </div>
-          </div>
-          <div class="hamburger-menu">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-          </div>
-        </nav>
-      </header>
+<head>
+  <meta charset="UTF-8">
+  <link rel="images" href="logonove.png">
+  <link rel="stylesheet" href="style.css">
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+</head>
 
-      <div class="product-detail">
-        <div class="product-detail-image">
-          <img src="https://content.ostermann.eu/webcontent/content/mamdata/Sammelordner/740-11-2_D4-Leime_7409037_ipic1_intl.jpg" alt="product">
-        </div>
-        <div class="product-details">
-          <h1 class="product-name"></h1>
-          <p class="product-description"></p>
-        </div>
-        <div class="product-price">
-          <span>$ 19.99</span>
-        </div> 
-        <div class="add-to-cart">
-          <button class="wiew_button" type="button">Add to Cart</button>
+<body>
+
+  <header>
+    <img class="logo" src="logonove.png" alt="logo">
+    <nav>
+      <div class="navbar">
+        <a href="./index.html">Domov</a>
+        <a href="./kontakt.html">Kontakt</a>
+        <a href="./eshop.html">Eshop</a>
+        <a href="./ucet.html">Login</a>
+        <form>
+          <input type="text" placeholder="Search...">
+          <button type="submit">Search</button>
+        </form>
+        <div class="cart">
+          <a style="text-decoration: none; color: black;" href="./cart.html"><img
+              src="https://img.icons8.com/ios-glyphs/30/null/shopping-cart--v1.png" />
+            <span class="cart-count"></span>
+          </a>
         </div>
       </div>
+      <div class="hamburger-menu">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="product-detail" id="product-detail">
+    <div class="product-detail-image">
+      <img
+        src="https://content.ostermann.eu/webcontent/content/mamdata/Sammelordner/740-11-2_D4-Leime_7409037_ipic1_intl.jpg"
+        alt="product">
+    </div>
+    <div class="product-details">
+      <h1 class="product-name"></h1>
+      <p class="product-description"></p>
+    </div>
+    <div class="product-price">
+      <span>$ 19.99</span>
+    </div>
+
+      <button class="add-to-cart" type="button">Add to Cart</button>
+  </div>
 
 
 
-          <script src="./navbar.js"></script>
-          <script>
-            //get product info from local storage
-            let product = localStorage.getItem("product-detail");
-            product = JSON.parse(product);
-            console.log(product);
+  <script src="./navbar.js"></script>
+  <script>
+    //get product info from local storage
+    let product = localStorage.getItem("product-detail");
+    product = JSON.parse(product);
+    console.log(product);
 
-            //set product info to html
-            document.querySelector(".product-detail-image img").src = product.img;
-            document.querySelector(".product-name").innerHTML = product.name;
+    //set product info to html
+    document.querySelector(".product-detail-image img").src = product.img;
+    document.querySelector(".product-name").innerHTML = product.name;
+    document.querySelector(".product-description").innerHTML = product.text;
 
-          </script>
-    </body>
+    const updateCartCount = () => {
+      let cart = localStorage.getItem('cart');
+      if (cart === null) {
+        cart = [];
+      } else {
+        cart = JSON.parse(cart);
+      }
+      const cartCountElement = document.querySelector('.cart-count');
+      cartCountElement.textContent = cart.length;
+    };
+
+    //add to cart
+    const productElement = document.querySelector('.product-detail');
+    productElement.addEventListener('click', (e) => {
+      if (e.target.classList.contains('add-to-cart')) {
+        const productData = {
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          img: product.img,
+          quantity: 1
+        };
+        let cart = localStorage.getItem('cart');
+        if (cart === null) {
+          cart = [];
+        } else {
+          cart = JSON.parse(cart);
+        }
+        cart.push(productData);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+        console.log(cart);
+      }
+    });
+
+  </script>
+</body>
+
 </html>

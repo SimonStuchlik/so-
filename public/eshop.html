@@ -100,11 +100,13 @@ products.forEach(product => {
         id: product.id,
         name: product.name,
         price: product.price,
+        text: product.text,
         img: product.img,
         quantity: 1
       };
       //save product detail to local storage
       localStorage.setItem('product-detail', JSON.stringify(productData));
+      console.log(productData);
       //redirect to product detail page
       window.location.href = './produkt.html';
     }
