@@ -50,7 +50,7 @@
       <p class="product-description"></p>
     </div>
     <div class="product-price">
-      <span>$ 19.99</span>
+      <span>€</span>
     </div>
 
       <button class="add-to-cart" type="button">Add to Cart</button>
@@ -69,6 +69,7 @@
     document.querySelector(".product-detail-image img").src = product.img;
     document.querySelector(".product-name").innerHTML = product.name;
     document.querySelector(".product-description").innerHTML = product.text;
+    document.querySelector(".product-price span").innerHTML = product.price + "€";
 
     const updateCartCount = () => {
       let cart = localStorage.getItem('cart');

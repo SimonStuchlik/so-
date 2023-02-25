@@ -30,10 +30,16 @@
       
     <div class="product-form">
         <h2>Pridať nový produkt</h2>
-        <form>
+        <form id="form">
           <div class="form-group">
             <label for="product-name">Meno produktu</label>
             <input type="text" id="product-name" name="product-name" required>
+          </div>
+          <div class="form-group">
+            <label for="product-section">Seckia produktu</label>
+            <select id="product-section" name="product-section" required>
+              <option value="">Vyberte sekciu produktu</option>
+            </select>
           </div>
           <div class="form-group">
             <label for="product-description">Popis</label>
@@ -55,6 +61,8 @@
           </div>
           <button type="submit">Pridať produkt</button>
         </form>
-      </div>      
+      </div> 
+      
+      <script type="module" src="./admin.js"></script>
 </body>
 </html>
