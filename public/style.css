@@ -589,6 +589,14 @@ form {
     margin-bottom: 20px;
   }
   
+  
+  
+  .product-price1 {
+    font-size: 18px;
+    color: #FFC107;
+    margin-bottom: 20px;
+  }
+  
   .product-quantity {
     display: flex;
     align-items: center;
@@ -638,8 +646,12 @@ form {
   
   .product-form .form-group {
     margin-bottom: 30px;
+    
   }
-  
+  .form-group1dali  :hover{
+background-color: #D6B419;
+
+  }
   .product-form label {
     display: block;
     margin-bottom: 5px;
@@ -786,6 +798,21 @@ form {
 
 #product-section::-ms-expand {
   display: none;
+}
+.btn-btn-danger{
+  background-color: yellow;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.aaa{
+color: #000;
+text-decoration: none;
+
 }
 
 
