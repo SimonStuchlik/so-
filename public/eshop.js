@@ -9,7 +9,7 @@ const sortSelect = document.getElementById('sort-select');
 const productSectionsRef = collection(db, 'productSections');
 
 //get all productSections
-let productSections = [];
+let productSections = [{ name: "Vyberte sekciu produktu" }];
 let productSectionIds = [];
 onSnapshot(productSectionsRef, (querySnapshot) => {
   querySnapshot.forEach((doc) => {
@@ -17,6 +17,7 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
     productSectionIds.push(doc.id);
   });
   let productsHTML = ''; // build a string of HTML
+  
   let productsList = []; // list of all products
   //get product sections for filter
   productSec.innerHTML = productSections.map((productSection) => `
