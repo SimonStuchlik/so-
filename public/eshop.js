@@ -8,8 +8,9 @@ const sortSelect = document.getElementById('sort-select');
 //collection reference
 const productSectionsRef = collection(db, 'productSections');
 
+
 //get all productSections
-let productSections = [{ name: "Vyberte sekciu produktu" }];
+let productSections = [];
 let productSectionIds = [];
 onSnapshot(productSectionsRef, (querySnapshot) => {
   querySnapshot.forEach((doc) => {
@@ -20,9 +21,14 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
   
   let productsList = []; // list of all products
   //get product sections for filter
-  productSec.innerHTML = productSections.map((productSection) => `
-    <option class="sekcie" id="section__button--${productSectionIds[productSections.indexOf(productSection)]}" value="${productSectionIds[productSections.indexOf(productSection)]}">${productSection.name}</option>`
-  ).join('');
+  
+  productSec.innerHTML = `
+  <option value="default">Vyberte sekciu produktu</option>
+  ${productSections.map((productSection) => `
+    <option class="sekcie" id="section__button--${productSectionIds[productSections.indexOf(productSection)]}" value="${productSectionIds[productSections.indexOf(productSection)]}">${productSection.name}</option>
+  `).join('')}
+`;
+
 
   // get list of products in each productSection
   productSectionIds.forEach((productSectionId, index) => {
@@ -41,7 +47,7 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
           <h3 class="card-title">${product.name}</h3>
           <img class="sell_img" src="${product.img}" alt="${product.name}">
           <p class="card-text">${product.price}€</p>
-          <button class="view-button" id="section__button--${product.id}">View Product</button>
+          <button class="wiew-button" id="section__button--${product.id}">View Product</button>
         </div>
       `).join('');
 
@@ -61,7 +67,7 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
             <h3 class="card-title">${product.name}</h3>
             <img class="sell_img" src="${product.img}" alt="${product.name}">
             <p class="card-text">${product.price}€</p>
-            <button class="view-button" id="section__button--${product.id}">View Product</button>
+            <button class="wiew-button" id="section__button--${product.id}">View Product</button>
           </div>
         `).join('');
         productsS.innerHTML = sortedProductsHTML;
@@ -81,7 +87,7 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
           <h3 class="card-title">${product.name}</h3>
           <img class="sell_img" src="${product.img}" alt="${product.name}">
           <p class="card-text">${product.price}€</p>
-          <button class="view-button" id="section__button--${product.id}">View Product</button>
+          <button class="wiew-button" id="section__button--${product.id}">View Product</button>
         </div>
       `).join('');
           productsS.innerHTML = filteredProductsHTML;
@@ -96,7 +102,7 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
         e.stopImmediatePropagation();
         const category = productSec.value;
         console.log(category, 'change');
-        if (category === '') {
+        if (category === 'default') {
           // show all products if no category selected
           productsS.innerHTML = productsHTML;
         } else {
