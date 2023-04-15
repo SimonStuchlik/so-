@@ -17,7 +17,7 @@
           <div class="navbar">
             <a href="./index.html">Domov</a>
             <a href="./kontakt.html">Kontakt</a>
-            <a href="./eshop.html">Eshop</a>
+            <a href="./products.html">Eshop</a>
             <a href="./login.html">Login</a>
             <a href="./ucet.html">Registration</a>
             <form>
@@ -39,7 +39,9 @@
       </header> 
 <a href="./filter.html">filtre </a>
       
-        <section class="cards"></section>
+        <section class="cards">
+        </section>
+        <div class="products" id="product-sections"></div>
     <script src="./navbar.js"></script>
     <script>
       const data = localStorage.getItem('products');
@@ -116,5 +118,6 @@ products.forEach(product => {
   });
 });
 
+
     </script>
-        </body> 
+</body> 
