@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <title>pilar</title>
+    <head>
+     <meta charset="UTF-8" >
+     <link rel="images"  href="logonove.png">
+     
+     <link rel="stylesheet" href="style.css">
+     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    </head>
+
+    <body>
+        
+      <header>
+        <img class="logo" src="logonove.png" alt="logo">
+        <nav>
+          <div class="navbar">
+            <a href="./index.html">Domov</a>
+            <a href="./kontakt.html">Kontakt</a>
+            <a href="./eshop.html">Eshop</a>
+            <a href="./login.html">Login</a>
+            <a href="./ucet.html">Registration</a>
+            <form>
+              <input type="text" placeholder="Search...">
+              <button type="submit">Search</button>
+            </form>
+            <div class="cart">
+              <a style="text-decoration: none; color: black;" href="./cart.html"><img src="https://img.icons8.com/ios-glyphs/30/null/shopping-cart--v1.png"/>
+                <span class="cart-count"></span>
+              </a>
+            </div>
+          </div> 
+          <div class="hamburger-menu">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+          </div>
+        </nav>
+      </header>
+      <div class="sidebar">
+        <ul class="nav">
+          
+          <li class="nav-item">
+            <a href="cart.html" class="nav-link">Objednávky</a>
+          </li>
+         
+          <li class="nav-item">
+            <a href="index.html" class="nav-link">Späť na stránku</a>
+          </li>
+        </ul>
+      </div>
+      
+    <div class="product-form">
+        <h2>Objednávka</h2>
+        <form id="form">
+          <div class="form-group">
+            <label for="product-name">Meno a priezvisko</label>
+            <input type="text" id="product-name" name="product-name" required>
+          </div>
+          <form id="form">
+            <div class="form-group">
+              <label for="product-name">Psč</label>
+              <input type="text" id="product-name" name="product-name" required>
+            </div>
+            <form id="form">
+              <div class="form-group">
+                <label for="product-name">Mesto</label>
+                <input type="text" id="product-name" name="product-name" required>
+              </div>
+              <form id="form">
+                <div class="form-group">
+                  <label for="product-name">Adresa</label>
+                  <input type="text" id="product-name" name="product-name" required>
+                </div>
+          
+          <div class="form-group">
+            <label for="product-description">Poznamka</label>
+            <textarea id="product-description" name="product-description" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="product-price">Cena (€)</label>
+            <input type="text" id="product-price" name="product-price" min="0" step="0.01" required>
+          </div>
+          
+          <button  class="btn-btn-danger"  > <a  class="aaa" href="./platba.html">pokračovat</a></button>
+        </form>
+      </div> 
+      
+      <script type="module" src="./admin.js"></script>
+     
+      </body>
+    </html>

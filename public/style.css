@@ -335,10 +335,12 @@ header {
 .navbar {
   display: flex;
   align-items: center;
+  
 }
 
 .navbar a {
   margin-right: 20px;
+  font-size: clamp(15px, 20px , 35px);
 }
 
 form {
@@ -635,6 +637,7 @@ form {
   .product-form {
     max-width: 500px;
     margin: 0 auto;
+    
   }
   
   .product-form h2 {
@@ -800,7 +803,7 @@ background-color: #D6B419;
   display: none;
 }
 .btn-btn-danger{
-  background-color: yellow;
+  background-color: #D6B419;
     color: black;
     border: none;
     border-radius: 5px;
@@ -814,5 +817,7 @@ color: #000;
 text-decoration: none;
 
 }
+
+
 
 
