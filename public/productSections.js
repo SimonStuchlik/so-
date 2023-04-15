@@ -15,6 +15,19 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
         productSections.push(doc.data());
         productSectionIds.push(doc.id);
     })
+    // get list of products in a productSection
+    productSectionIds.forEach((productSectionId, index) => {
+    const productsRef = collection(db, 'productSections', productSectionId, '1');
+    const products = [];
+  
+    onSnapshot(productsRef, (querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        products.push({ id: doc.id, ...doc.data() });
+      });
+  
+      console.log(`Products in ${productSections[index].name}: `, products);
+    });
+  });
     console.log(productSectionIds);
     productsS.innerHTML = productSections.map((productSection) => `
         <div class="card">
@@ -43,19 +56,5 @@ productsS.addEventListener('click', (e) => {
 })
 
 
-// //get list of products in a productSection
-// let productsSec = [];
-// onSnapshot(productsRef, (querySnapshot) => {
-//     let productsList = document.getElementById('products');
-//     querySnapshot.forEach((doc) => {
-//         productsSec.push(doc.data());
-//     })
-//     console.log(products);
-//     productsList.innerHTML = products.map((product) => `
-//         <div class="card">
-//             <h3 class="card-title
-//             ">${productsSec.name}</h3>
-//             <img src="${productsSec.img}" alt="${productsSec.name}">
-//         </div>`
-//     ).join('');
-// });
+
+
