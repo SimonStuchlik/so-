@@ -20,7 +20,7 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
   let productsList = []; // list of all products
   //get product sections for filter
   productSec.innerHTML = productSections.map((productSection) => `
-    <option value="${productSection.name}">${productSection.name}</option>`
+    <option class="sekcie" id="section__button--${productSectionIds[productSections.indexOf(productSection)]}" value="${productSectionIds[productSections.indexOf(productSection)]}">${productSection.name}</option>`
   ).join('');
 
   // get list of products in each productSection
@@ -65,6 +65,44 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
         `).join('');
         productsS.innerHTML = sortedProductsHTML;
       });
+
+      function filterByCategory(category) {
+        // filter products by category and update the HTML
+        var ref = collection(db, "/productSections/", category + '/1');
+        let products = [];
+        onSnapshot(ref, (querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            products.push({ ...doc.data() });
+          })
+          //display filtered products
+          const filteredProductsHTML = products.map((product) => `
+        <div class="card">
+          <h3 class="card-title">${product.name}</h3>
+          <img class="sell_img" src="${product.img}" alt="${product.name}">
+          <p class="card-text">${product.price}€</p>
+          <button class="view-button" id="section__button--${product.id}">View Product</button>
+        </div>
+      `).join('');
+          productsS.innerHTML = filteredProductsHTML;
+        })
+
+
+      }
+
+
+      productSec.addEventListener('change', (e) => {
+        //only capture first change
+        e.stopImmediatePropagation();
+        const category = productSec.value;
+        console.log(category, 'change');
+        if (category === '') {
+          // show all products if no category selected
+          productsS.innerHTML = productsHTML;
+        } else {
+          filterByCategory(category);
+        }
+      });
+
     });
   });
 });

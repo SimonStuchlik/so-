@@ -38,7 +38,7 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
     ).join('');
 });
 
-//delete productSection
+// display products in a productSection
 productsS.addEventListener('click', (e) => {
     if(e.target.classList.contains('wiew_button')){
         let id = e.target.id.split('--')[1];
