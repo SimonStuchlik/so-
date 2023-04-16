@@ -1,123 +1,125 @@
 <!DOCTYPE html>
 <html>
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css'>
-    <title>pilar</title>
-    <head>
-     <meta charset="UTF-8" >
-     <link rel="images"  href="logonove.png">
-     <link rel="stylesheet" href="style.css">
-     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-    </head>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css'>
+<title>pilar</title>
 
-    <body>
-        
-      <header>
-        <img class="logo" src="logonove.png" alt="logo">
-        <nav>
-          <div class="navbar">
-            <a href="./index.html">Domov</a>
-            <a href="./kontakt.html">Kontakt</a>
-            <a href="./products.html">Eshop</a>
-            <a href="./login.html">Login</a>
-            <a href="./ucet.html">Registration</a>
-            <form>
-              <input type="text" placeholder="Search...">
-              <button type="submit">Search</button>
-            </form>
-            <div class="cart">
-              <a style="text-decoration: none; color: black;" href="./cart.html"><img src="https://img.icons8.com/ios-glyphs/30/null/shopping-cart--v1.png"/>
-                <span class="cart-count"></span>
-              </a>
-            </div>
-          </div>
-          <div class="hamburger-menu">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-          </div>
-        </nav>
-      </header> 
-<a href="./filter.html">filtre </a>
-      
-        <section class="cards">
-        </section>
-        <div class="products" id="product-sections"></div>
-    <script src="./navbar.js"></script>
-    <script>
-      const data = localStorage.getItem('products');
-const products = JSON.parse(data);
-const productsContainer = document.querySelector('.cards');
+<head>
+  <meta charset="UTF-8">
+  <link rel="images" href="logonove.png">
+  <link rel="stylesheet" href="style.css">
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+</head>
 
-products.forEach(product => {
-  const productElement = document.createElement('div');
-  productElement.classList.add('product');
-  productElement.innerHTML = `
+<body>
+
+  <header>
+    <img class="logo" src="logonove.png" alt="logo">
+    <nav>
+      <div class="navbar">
+        <a href="./index.html">Domov</a>
+        <a href="./kontakt.html">Kontakt</a>
+        <a href="./products.html">Produkty</a>
+        <a href="./login.html">Prihlásenie</a>
+        <a href="./ucet.html">Registrácia</a>
+        <form>
+          <input type="text" placeholder="Search...">
+          <button type="submit">Search</button>
+        </form>
+        <div class="cart">
+          <a style="text-decoration: none; color: black;" href="./cart.html"><img
+              src="https://img.icons8.com/ios-glyphs/30/null/shopping-cart--v1.png" />
+            <span class="cart-count"></span>
+          </a>
+        </div>
+      </div>
+      <div class="hamburger-menu">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </nav>
+  </header>
+  <a href="./filter.html">filtre </a>
+
+  <section class="cards">
+  </section>
+  <div class="products" id="product-sections"></div>
+  <script src="./navbar.js"></script>
+  <script>
+    const data = localStorage.getItem('products');
+    const products = JSON.parse(data);
+    const productsContainer = document.querySelector('.cards');
+
+    products.forEach(product => {
+      const productElement = document.createElement('div');
+      productElement.classList.add('product');
+      productElement.innerHTML = `
     <div class="frame">
       <img class="product-img" src="${product.img}" alt="${product.name}">
       <h1 class="product-name">${product.name}</h1>
-      <button class="wiew_button">Add to cart</button>
+      <button class="wiew_button">Pridať do košíka</button>
     </div>
   `;
-  productsContainer.appendChild(productElement);
-  //display cart items in header
-  const updateCartCount = () => {
-    let cart = localStorage.getItem('cart');
-    if (cart === null) {
-      cart = [];
-    } else {
-      cart = JSON.parse(cart);
-    }
-    const cartCountElement = document.querySelector('.cart-count');
-    cartCountElement.textContent = cart.length;
-  };
-
-  updateCartCount();
-
-  // add to cart
-  productElement.addEventListener('click', (e) => {
-    if (e.target.classList.contains('wiew_button')) {
-      const productData = {
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        img: product.img,
-        quantity: 1
+      productsContainer.appendChild(productElement);
+      //display cart items in header
+      const updateCartCount = () => {
+        let cart = localStorage.getItem('cart');
+        if (cart === null) {
+          cart = [];
+        } else {
+          cart = JSON.parse(cart);
+        }
+        const cartCountElement = document.querySelector('.cart-count');
+        cartCountElement.textContent = cart.length;
       };
-      let cart = localStorage.getItem('cart');
-      if (cart === null) {
-        cart = [];
-      } else {
-        cart = JSON.parse(cart);
-      }
-      cart.push(productData);
-      localStorage.setItem('cart', JSON.stringify(cart));
+
       updateCartCount();
-      console.log(cart);
-    }
-  });
 
-  //display product detail 
-  productElement.addEventListener('click', (e) => {
-    if (e.target.classList.contains('product-img') || e.target.classList.contains('product-name')) {
-      //reset product detail
-      localStorage.removeItem('product-detail');
-      const productData = {
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        text: product.text,
-        img: product.img,
-        quantity: 1
-      };
-      //save product detail to local storage
-      localStorage.setItem('product-detail', JSON.stringify(productData));
-      console.log(productData);
-      //redirect to product detail page
-      window.location.href = './produkt.html';
-    }
-  });
-});
+      // add to cart
+      productElement.addEventListener('click', (e) => {
+        if (e.target.classList.contains('wiew_button')) {
+          const productData = {
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            img: product.img,
+            quantity: 1
+          };
+          let cart = localStorage.getItem('cart');
+          if (cart === null) {
+            cart = [];
+          } else {
+            cart = JSON.parse(cart);
+          }
+          cart.push(productData);
+          localStorage.setItem('cart', JSON.stringify(cart));
+          updateCartCount();
+          console.log(cart);
+        }
+      });
+
+      //display product detail 
+      productElement.addEventListener('click', (e) => {
+        if (e.target.classList.contains('product-img') || e.target.classList.contains('product-name')) {
+          //reset product detail
+          localStorage.removeItem('product-detail');
+          const productData = {
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            text: product.text,
+            img: product.img,
+            quantity: 1
+          };
+          //save product detail to local storage
+          localStorage.setItem('product-detail', JSON.stringify(productData));
+          console.log(productData);
+          //redirect to product detail page
+          window.location.href = './produkt.html';
+        }
+      });
+    });
 
 
-    </script>
-</body> 
+  </script>
+</body>

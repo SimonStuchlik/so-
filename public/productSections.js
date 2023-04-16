@@ -33,7 +33,7 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
         <div class="card">
             <h3 class="card-title">${productSection.name}</h3>
             <img class= "sell_img"src="${productSection.img}" alt="${productSection.name}">
-            <button class="wiew_button" id="section__button--${productSectionIds[productSections.indexOf(productSection)]}">View Products</button>
+            <button class="wiew_button" id="section__button--${productSectionIds[productSections.indexOf(productSection)]}">Zobraziť produkty</button>
         </div>` 
     ).join('');
 });
