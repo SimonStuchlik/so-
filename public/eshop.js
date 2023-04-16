@@ -4,6 +4,7 @@ import { db, collection, getDocs, addDoc, onSnapshot, deleteDoc, doc } from './f
 const productsS = document.querySelector('.cards');
 const productSec = document.getElementById('product-section');
 const sortSelect = document.getElementById('sort-select');
+const productElement = document.createElement('div');
 
 //collection reference
 const productSectionsRef = collection(db, 'productSections');
@@ -17,7 +18,6 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
     productSections.push(doc.data());
     productSectionIds.push(doc.id);
   });
-  let productsHTML = ''; // build a string of HTML
   
   let productsList = []; // list of all products
   //get product sections for filter
@@ -42,17 +42,16 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
       });
 
       // build HTML for products
-      const productElement = document.createElement('div');
-      productElement.classList.add('product');
-      productElement.innerHTML = products.map((product) => `
+      console.log(productsList, 'products');
+      productElement.innerHTML = productsList.map((product) => `
       <div class="frame">
-      <img class="sell_img" id="section__button--${product.id}" src="${product.img}" alt="${product.name}">
-      <h3 class="card-title" id="section__button--${product.id}">${product.name}</h3>
-      <p class="card-text" id="section__button--${product.id}">${product.price}€</p>
-      <button class="wiew_button" id="section__button--${product.id}">Pridať do košíka</button>
-    </div>
+        <img class="sell_img" id="section__button--${product.id}" src="${product.img}" alt="${product.name}">
+        <h3 class="card-title" id="section__button--${product.id}">${product.name}</h3>
+        <p class="card-text" id="section__button--${product.id}">${product.price}€</p>
+        <button class="wiew_button" id="section__button--${product.id}">Pridať do košíka</button>
+      </div>
       `).join('');
-      productsS.appendChild(productElement);
+      productsS.innerHTML = productElement.innerHTML;
 
       // sort products based on price when the "Sort By" select element is changed
       sortSelect.addEventListener('change', () => {
@@ -62,8 +61,7 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
         } else if (sortBy === 'high-to-low') {
           productsList.sort((a, b) => b.price - a.price);
         }
-        const productElement = document.createElement('div');
-        productElement.classList.add('product');
+
         productElement.innerHTML = productsList.map((product) => `
         <div class="frame">
           <img class="sell_img" id="section__button--${product.id}" src="${product.img}" alt="${product.name}">
@@ -72,7 +70,7 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
           <button class="wiew_button" id="section__button--${product.id}">Pridať do košíka</button>
         </div>
         `).join('');
-        productsS.appendChild(productElement);
+        productsS.innerHTML = productElement.innerHTML;
       });
 
       function filterByCategory(category) {
@@ -83,9 +81,8 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
           querySnapshot.forEach((doc) => {
             products.push({ ...doc.data() });
           })
+          console.log(products, 'filtered products');
           //display filtered products
-          const productElement = document.createElement('div');
-          productElement.classList.add('product');
           productElement.innerHTML = products.map((product) => `
         <div class="frame">
           <img class="sell_img" id="section__button--${product.id}" src="${product.img}" alt="${product.name}">
@@ -94,7 +91,7 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
           <button class="wiew_button" id="section__button--${product.id}">Pridať do košíka</button>
         </div>
       `).join('');
-          productsS.appendChild(productElement);
+      productsS.innerHTML = productElement.innerHTML;
         })
       }
 
@@ -113,8 +110,9 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
       updateCartCount();
 
       // add to cart
-      productElement.addEventListener('click', (e) => {
+      productsS.addEventListener('click', (e) => {
         if (e.target.classList.contains('wiew_button')) {
+          console.log('add to cart');
           //get product details
           const productId = e.target.id.split('--')[1];
           const product = products.find((product) => product.id === productId);
@@ -141,14 +139,16 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
       });
 
       //display product detail 
-      productElement.addEventListener('click', (e) => {
+      productsS.addEventListener('click', (e) => {
+        //only capture first click
+        e.stopImmediatePropagation();
         if (e.target.classList.contains('sell_img') || e.target.classList.contains('card-title') || e.target.classList.contains('card-text')) {
-          //reset product detail
-          localStorage.removeItem('product-detail');
+          console.log('show product detail');
           //get product details
           const productId = e.target.id.split('--')[1];
           const product = products.find((product) => product.id === productId);
-
+          //reset product detail
+          localStorage.removeItem('product-detail');
           const productData = {
             id: product.id,
             name: product.name,
@@ -159,6 +159,7 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
           };
           //save product detail to local storage
           localStorage.setItem('product-detail', JSON.stringify(productData));
+          console.log(productData);
           //redirect to product detail page
           window.location.href = './produkt.html';
         }
@@ -172,9 +173,19 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
         console.log(category, 'change');
         if (category === 'default') {
           // show all products if no category selected
-          productsS.innerHTML = productsHTML;
+          productElement.innerHTML = productsList.map((product) => `
+          <div class="frame">
+            <img class="sell_img" id="section__button--${product.id}" src="${product.img}" alt="${product.name}">
+            <h3 class="card-title" id="section__button--${product.id}">${product.name}</h3>
+            <p class="card-text" id="section__button--${product.id}">${product.price}€</p>
+            <button class="wiew_button" id="section__button--${product.id}">Pridať do košíka</button>
+          </div>
+          `).join('');
+          productsS.innerHTML = productElement.innerHTML;
+          console.log('default');
         } else {
           filterByCategory(category);
+          console.log('filter');
         }
       });
 
