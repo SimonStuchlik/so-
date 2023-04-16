@@ -47,7 +47,7 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
       <div class="frame">
         <img class="sell_img" id="section__button--${product.id}" src="${product.img}" alt="${product.name}">
         <h3 class="card-title" id="section__button--${product.id}">${product.name}</h3>
-        <p class="card-text" id="section__button--${product.id}">${product.price}€</p>
+        <p class="product-price" id="section__button--${product.id}">${product.price}€</p>
         <button class="wiew_button" id="section__button--${product.id}">Pridať do košíka</button>
       </div>
       `).join('');
@@ -66,7 +66,7 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
         <div class="frame">
           <img class="sell_img" id="section__button--${product.id}" src="${product.img}" alt="${product.name}">
           <h3 class="card-title" id="section__button--${product.id}">${product.name}</h3>
-          <p class="card-text" id="section__button--${product.id}">${product.price}€</p>
+          <p class="product-price" id="section__button--${product.id}">${product.price}€</p>
           <button class="wiew_button" id="section__button--${product.id}">Pridať do košíka</button>
         </div>
         `).join('');
@@ -87,7 +87,7 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
         <div class="frame">
           <img class="sell_img" id="section__button--${product.id}" src="${product.img}" alt="${product.name}">
           <h3 class="card-title" id="section__button--${product.id}">${product.name}</h3>
-          <p class="card-text" id="section__button--${product.id}">${product.price}€</p>
+          <p class="product-price" id="section__button--${product.id}">${product.price}€</p>
           <button class="wiew_button" id="section__button--${product.id}">Pridať do košíka</button>
         </div>
       `).join('');
@@ -142,7 +142,7 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
       productsS.addEventListener('click', (e) => {
         //only capture first click
         e.stopImmediatePropagation();
-        if (e.target.classList.contains('sell_img') || e.target.classList.contains('card-title') || e.target.classList.contains('card-text')) {
+        if (e.target.classList.contains('sell_img') || e.target.classList.contains('product-price') || e.target.classList.contains('card-text')) {
           console.log('show product detail');
           //get product details
           const productId = e.target.id.split('--')[1];
