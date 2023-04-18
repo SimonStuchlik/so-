@@ -1,5 +1,5 @@
 import { db, collection, getDocs, addDoc, onSnapshot, deleteDoc, doc } from './firebase.js';
-import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-storage.js';
+import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL, deleteObject } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-storage.js';
 
 //cloud storage
 const storage = getStorage();
@@ -86,11 +86,26 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
                 const productId = e.target.id.split('--')[1];
                 //get product section id from price span
                 const productSectionId = e.target.previousElementSibling.id.split('--')[1];
+                //delete product from db and product img from storage
                 const productRef = doc(db, 'productSections', productSectionId, '1', productId);
-                deleteDoc(productRef).catch((error) => {
-                    console.log(error);
-                });
-            }
+                //get img src
+                const imgSrc = e.target.previousElementSibling.previousElementSibling.previousElementSibling.src;
+                //extract img name from src
+                const decodedUrl = decodeURIComponent(imgSrc);
+
+                let imageName = decodedUrl.substring(decodedUrl.lastIndexOf('/') + 1);
+                imageName = imageName.split('?')[0];
+                console.log(imageName);
+                const storageRef = sRef(storage, 'product-images/' + imageName);
+                deleteDoc(productRef).then(() => {
+                    console.log('db deleted');
+                    deleteObject(storageRef).then(() => {
+                        console.log('storage deleted');
+                    })
+            }).catch((error) => {
+                console.log(error);
+            });
+        }
         });
     })
 });
@@ -122,15 +137,14 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
     function showElement(elementId) {
         const elementIds = ['dashboard', 'products-list', 'orders-list'];
         elementIds.forEach(id => {
-            if (id === elementId && id == ! 'products-list') {
-                document.getElementById(id).style.display = 'block';
-            }
-            else if (id === 'products-list') {
-                document.getElementById(id).style.display = 'flex';
+            //if id is equal to products-list then display flex or none and for others display block or none
+            if (id === elementId) {
+                document.getElementById(id).style.display = id === 'products-list' ? 'flex' : 'block';
             }
             else {
                 document.getElementById(id).style.display = 'none';
             }
+
         });
     }
 
