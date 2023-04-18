@@ -146,11 +146,12 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
           console.log('show product detail');
           //get product details
           const productId = e.target.id.split('--')[1];
-          const product = products.find((product) => product.id === productId);
+          console.log(productId);
+          const product = productsList.find((product) => product.id === productId);
           //reset product detail
           localStorage.removeItem('product-detail');
           const productData = {
-            id: product.id,
+            id: productId,
             name: product.name,
             price: product.price,
             text: product.text,
