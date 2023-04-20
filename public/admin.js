@@ -1,4 +1,4 @@
-import { db, collection, getDocs, addDoc, onSnapshot, deleteDoc, doc } from './firebase.js';
+import { db, collection, getDoc, addDoc, onSnapshot, deleteDoc, doc } from './firebase.js';
 import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL, deleteObject } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-storage.js';
 
 //cloud storage
@@ -74,6 +74,7 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
                     
                     <span class="cart-item-title">${product.name}</span>
                     <span class="cart-item-price" id="section__id--${category}">${product.price}</span>
+                    <button class="btn btn-primary" type="button" id="edit__button--${product.id}">EDIT</button>
                     <button class="btn btn-danger" type="button" id="delete__button--${product.id}">REMOVE</button>
 
                 </div>
@@ -108,6 +109,36 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
         }
         });
     })
+});
+
+//edit product
+const productsList = document.getElementById('products-list');
+productsList.addEventListener('click', (e) => {
+    e.stopImmediatePropagation();
+    if (e.target.classList.contains('btn-primary')) {
+        const productId = e.target.id.split('--')[1];
+        //get product section id from price span
+        const productSectionId = e.target.previousElementSibling.id.split('--')[1];
+        //get product from db and save it to local storage with section id
+        const productRef = doc(db, 'productSections', productSectionId, '1', productId);
+        //delete old product and section id from local storage
+        localStorage.removeItem('productEdit');
+        localStorage.removeItem('productSectionIdEdit');
+        localStorage.removeItem('productIdEdit');
+        getDoc(productRef).then((doc) => {
+            if (doc.exists()) {
+                localStorage.setItem('productEdit', JSON.stringify(doc.data()));
+                localStorage.setItem('productSectionIdEdit', productSectionId);
+                localStorage.setItem('productIdEdit', productId);
+                console.log('document data:', doc.data());
+                window.location.href = 'product-edit.html';
+            } else {
+                console.log('no such document');
+            }
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
 });
 
 

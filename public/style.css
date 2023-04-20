@@ -552,7 +552,7 @@ form {
     margin-right: 20px;
   }
   
-  .btn-danger {
+  .btn-danger, .btn-primary {
     background-color: #dc3545;
     color: #fff;
     border: none;
@@ -560,6 +560,10 @@ form {
     padding: 10px 20px;
     font-weight: bold;
     cursor: pointer;
+  }
+
+  .btn-primary {
+    background-color: #CEB01E;
   }
 
   /*product detail*/
