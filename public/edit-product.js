@@ -82,7 +82,7 @@ form.addEventListener("submit", async (e) => {
     else {
     const file = imageUpload.files[0];
     const storage = getStorage();
-    const storageRef = sRef(storage, 'products/' + file.name);
+    const storageRef = sRef(storage, 'product-images/' + file.name);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
     const data = {

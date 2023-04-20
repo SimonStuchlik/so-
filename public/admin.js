@@ -22,7 +22,7 @@ const productSectionsRef = collection(db, 'productSections');
 //upload photo
 function handleWelcomeUpload(uploadTask, data, docMethod, loader, ref) {
     uploadTask.on('state_changed', function (snapshot) {
-        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        var progress = (snapshot.byproductListransferred / snapshot.totalBytes) * 100;
         console.log(progress, " percent");
         switch (snapshot.state) {
             case 'paused':
@@ -60,7 +60,7 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
         <option value="${productSection}">${productSection}</option>`
     ).join('');
     //load products same way as in cart
-    const productsList = document.getElementById('products-list');
+    const productList = document.getElementById('products-list');
     productSectionIds.forEach((category) => {
         const productsRef = collection(db, 'productSections', category, '1');
         let products = [];
@@ -68,7 +68,7 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
             querySnapshot.forEach((doc) => {    
                 products.push({id: doc.id, ...doc.data()});
             })
-            productsList.innerHTML += products.map((product) => `
+            productList.innerHTML += products.map((product) => `
                 <div class="cart-item">
                     <img class="cart-item-image" src="${product.img}" width="100" height="100">
                     
@@ -80,66 +80,66 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
                 </div>
                 `).join('');
         })
-        //remove product 
-        productsList.addEventListener('click', (e) => {
+        //edit of remove product
+        productList.addEventListener('click', (e) => {
             e.stopImmediatePropagation();
-            if (e.target.classList.contains('btn-danger')) {
+            if (e.target.classList.contains('btn-primary')) {
+                // edit product
                 const productId = e.target.id.split('--')[1];
                 //get product section id from price span
                 const productSectionId = e.target.previousElementSibling.id.split('--')[1];
+                //get product from db and save it to local storage with section id
+                const productRef = doc(db, 'productSections', productSectionId, '1', productId);
+                //delete old product and section id from local storage
+                localStorage.removeItem('productEdit');
+                localStorage.removeItem('productSectionIdEdit');
+                localStorage.removeItem('productIdEdit');
+                getDoc(productRef).then((doc) => {
+                    if (doc.exists()) {
+                        localStorage.setItem('productEdit', JSON.stringify(doc.data()));
+                        localStorage.setItem('productSectionIdEdit', productSectionId);
+                        localStorage.setItem('productIdEdit', productId);
+                        console.log('document data:', doc.data());
+                        window.location.href = 'product-edit.html';
+                    } else {
+                        console.log('no such document');
+                    }
+                }).catch((error) => {
+                    console.log(error);
+                });
+            } else if (e.target.classList.contains('btn-danger')) {
+                // remove product 
+                const productId = e.target.id.split('--')[1];
+                //get product section id from price span
+                const productSectionId = e.target.previousElementSibling.previousElementSibling.id.split('--')[1];
                 //delete product from db and product img from storage
                 const productRef = doc(db, 'productSections', productSectionId, '1', productId);
-                //get img src
-                const imgSrc = e.target.previousElementSibling.previousElementSibling.previousElementSibling.src;
+                // get img src
+                const imgSrc = e.target.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.src;
                 //extract img name from src
                 const decodedUrl = decodeURIComponent(imgSrc);
-
+        
                 let imageName = decodedUrl.substring(decodedUrl.lastIndexOf('/') + 1);
                 imageName = imageName.split('?')[0];
                 console.log(imageName);
                 const storageRef = sRef(storage, 'product-images/' + imageName);
                 deleteDoc(productRef).then(() => {
-                    console.log('db deleted');
+                    console.log('db deleted', productId, productSectionId);
                     deleteObject(storageRef).then(() => {
                         console.log('storage deleted');
+                        window.location.reload();
                     })
-            }).catch((error) => {
-                console.log(error);
-            });
-        }
+                }).catch((error) => {
+                    console.log(error);
+                });
+            }
         });
+        
+
     })
 });
 
-//edit product
-const productsList = document.getElementById('products-list');
-productsList.addEventListener('click', (e) => {
-    e.stopImmediatePropagation();
-    if (e.target.classList.contains('btn-primary')) {
-        const productId = e.target.id.split('--')[1];
-        //get product section id from price span
-        const productSectionId = e.target.previousElementSibling.id.split('--')[1];
-        //get product from db and save it to local storage with section id
-        const productRef = doc(db, 'productSections', productSectionId, '1', productId);
-        //delete old product and section id from local storage
-        localStorage.removeItem('productEdit');
-        localStorage.removeItem('productSectionIdEdit');
-        localStorage.removeItem('productIdEdit');
-        getDoc(productRef).then((doc) => {
-            if (doc.exists()) {
-                localStorage.setItem('productEdit', JSON.stringify(doc.data()));
-                localStorage.setItem('productSectionIdEdit', productSectionId);
-                localStorage.setItem('productIdEdit', productId);
-                console.log('document data:', doc.data());
-                window.location.href = 'product-edit.html';
-            } else {
-                console.log('no such document');
-            }
-        }).catch((error) => {
-            console.log(error);
-        });
-    }
-});
+
 
 
     //submit form
@@ -183,5 +183,3 @@ productsList.addEventListener('click', (e) => {
     productsPage.addEventListener('click', (e) => showElement('products-list'));
     ordersPage.addEventListener('click', (e) => showElement('orders-list'));
 
-
-    ;
