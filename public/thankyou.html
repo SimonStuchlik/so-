@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<title>pilar</title>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="images" href="logonove.png">
+    <link rel="stylesheet" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+<style>
+    .purchase-thank-you {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.purchase-thank-you p {
+  font-size: 2em;
+  color: black;
+  text-align: center;
+    margin: 1em 0;
+}
+
+.purchase-thank-you button {
+  padding: 1em 2em;
+  border: none;
+  border-radius: 5px;
+  background-color: #ffc107;
+  color: white;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.purchase-thank-you button:hover {
+  background-color: #ffdf5e;
+}
+
+</style>
+</head>
+
+
+<body>
+
+    <header>
+        <img class="logo" src="logonove.png" alt="logo">
+        <nav>
+            <div class="navbar">
+                <a href="./index.html">Domov</a>
+                <a href="./kontakt.html">Kontakt</a>
+                <a href="./products.html">Produkty</a>
+                <a href="./login.html">Prihlásenie</a>
+                <a href="./stripe-products.html">Stripe</a>
+                <!-- <a href="./ucet.html">Registrácia</a> -->
+                <div class="cart">
+                    <a style="text-decoration: none; color: black;" href="./cart.html"><img
+                            src="https://img.icons8.com/ios-glyphs/30/null/shopping-cart--v1.png" />
+                        <span class="cart-count"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="hamburger-menu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="purchase-thank-you">
+        <img src="logonove.png" alt="">
+        <p>Ďakujeme za nákup na stránke Pilar!</p>
+        <button onclick="window.location.href='./index.html'">Späť na nakupovanie</button>
+      </div>
+      
+
+    <script src="./navbar.js"></script>
+</body>
