@@ -25,3 +25,5 @@ export const database = getDatabase();
 export const db = getFirestore();
 
 export{doc, addDoc, collection, getDocs, getDoc, onSnapshot, deleteDoc, updateDoc, getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, getDatabase, set, ref, update}
+
+const STRIPE_PUBLISHABLE_KEY='pk_test_51MyUuoDxFXB9vvnAeGlxPmfETdVVE1XqRibdiQFUvFDxRP49zNm3pduhqrvuYU7PRN9nFR8ufsuFZrRPDb5zZKM600vK2Z7eRv';

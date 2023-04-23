@@ -1,42 +1,70 @@
 <!DOCTYPE html>
 <html>
-    <title>pilar</title>
+    <title>pilar - košík</title>
     <head>
-     <meta charset="UTF-8" >
-     <link rel="images"  href="logonove.png">
-     
-     <link rel="stylesheet" href="style.css">
-     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+        <meta charset="UTF-8" >
+        <link rel="images"  href="logonove.png">
+        <link rel="stylesheet" href="style.css">
+        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     </head>
 
     <body>
-        
-      <header>
-        <img class="logo" src="logonove.png" alt="logo">
-        <nav>
-          <div class="navbar">
-            <a href="./index.html">Domov</a>
-            <a href="./kontakt.html">Kontakt</a>
-            <a href="./products.html">Produkty</a>
-            <a href="./login.html">Prihlásenie</a>
-            <a href="./ucet.html">Registrácia</a>
+        <header>
+            <img class="logo" src="logonove.png" alt="logo">
+            <nav>
+                <div class="navbar">
+                    <a href="./index.html">Domov</a>
+                    <a href="./kontakt.html">Kontakt</a>
+                    <a href="./products.html">Produkty</a>
+                    <a href="./login.html">Prihlásenie</a>
+                    <a href="./ucet.html">Registrácia</a>
 
-            <div class="cart">
-              <a style="text-decoration: none; color: black;" href="./cart.html"><img src="https://img.icons8.com/ios-glyphs/30/null/shopping-cart--v1.png"/>
-                <span class="cart-count"></span>
-              </a>
-            </div>
-          </div> 
-          <div class="hamburger-menu">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-          </div>
-        </nav>
-      </header>
-      
-      
-    
-     
-      </body>
-    </html>
+                    <div class="cart">
+                        <a style="text-decoration: none; color: black;" href="./cart.html">
+                            <img src="https://img.icons8.com/ios-glyphs/30/null/shopping-cart--v1.png"/>
+                            <span class="cart-count"></span>
+                        </a>
+                    </div>
+                </div> 
+                <div class="hamburger-menu">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <h1>Košík</h1>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Názov produktu</th>
+                        <th>Cena</th>
+                        <th>Počet kusov</th>
+                        <th>Celková cena</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-items"></tbody>
+            </table>
+
+            <form id="order-form">
+                <h2>Vyplňte údaje pre doručenie</h2>
+                <label for="name">Meno a priezvisko:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="address">Adresa doručenia:</label>
+                <input type="text" id="address" name="address" required>
+
+                <label for="phone">Telefónne číslo:</label>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+
+                <button type="submit">Objednať</button>
+            </form>
+        </main>
+
+
+        <script type="module" src="./payment.js"></script>
+    </body>
+</html>

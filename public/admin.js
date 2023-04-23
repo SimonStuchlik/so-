@@ -140,6 +140,60 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
 });
 
 
+// Get orders collection from Firebase
+const ordersCollection = collection(db, 'orders');
+
+// Get table body element
+const ordersEl = document.querySelector('#orders');
+
+// Listen for changes in orders collection and update table
+onSnapshot(ordersCollection, snapshot => {
+  ordersEl.innerHTML = '';
+  snapshot.forEach(docu => {
+    const order = docu.data();
+    const row = document.createElement('tr');
+
+    const nameCell = document.createElement('td');
+    nameCell.innerText = order.name;
+    row.appendChild(nameCell);
+
+    const addressCell = document.createElement('td');
+    addressCell.innerText = order.address;
+    row.appendChild(addressCell);
+
+    const phoneCell = document.createElement('td');
+    phoneCell.innerText = order.phone;
+    row.appendChild(phoneCell);
+
+    const itemsCell = document.createElement('td');
+    const itemsList = document.createElement('ul');
+    order.items.forEach(item => {
+      const listItem = document.createElement('li');
+      listItem.innerText = `${item.name} (${item.quantity}x)`;
+      itemsList.appendChild(listItem);
+    });
+    itemsCell.appendChild(itemsList);
+    row.appendChild(itemsCell);
+
+    const totalCell = document.createElement('td');
+    totalCell.innerText = `${order.total} €`;
+    row.appendChild(totalCell);
+
+    const actionCell = document.createElement('td');
+    const deleteBtn = document.createElement('span');
+    deleteBtn.classList.add('action');
+    deleteBtn.innerText = 'Vymazať';
+    deleteBtn.addEventListener('click', () => {
+      deleteDoc(doc(db, 'orders', docu.id));
+    });
+    actionCell.appendChild(deleteBtn);
+    row.appendChild(actionCell);
+
+    ordersEl.appendChild(row);
+  });
+});
+
+
 
 
     //submit form
