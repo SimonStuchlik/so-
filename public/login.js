@@ -6,7 +6,6 @@ import { auth, database, set, ref, update, createUserWithEmailAndPassword, signI
 const loginForm = document.getElementById('loginForm');
 loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    console.log("test");
   var email = document.getElementById('email').value;
   var password = document.getElementById('password').value;
 
@@ -15,6 +14,7 @@ loginForm.addEventListener("submit", (e) => {
       // Signed in 
       const user = userCredential.user;
       document.cookie = "user=" + user.uid;
+      window.location.replace("./admin.html");
       // ...
       var lgDate = new Date();
 
@@ -22,6 +22,7 @@ loginForm.addEventListener("submit", (e) => {
         last_login: lgDate,
       }).then(() => {
         // Data saved successfully!
+          window.location.replace("./admin.html");
           console.log("Data saved successfully!");
         // window.location.replace("./index.html");
         
