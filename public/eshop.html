@@ -20,7 +20,7 @@
         <a href="./kontakt.html">Kontakt</a>
         <a href="./products.html">Produkty</a>
         <a href="./login.html">Prihlásenie</a>
-        <a href="./ucet.html">Registrácia</a>
+      <!-- <a href="./ucet.html">Registrácia</a> -->
 
         <div class="cart">
           <a style="text-decoration: none; color: black;" href="./cart.html"><img
@@ -92,7 +92,6 @@
           cart.push(productData);
           localStorage.setItem('cart', JSON.stringify(cart));
           updateCartCount();
-          console.log(cart);
         }
       });
 
@@ -111,7 +110,6 @@
           };
           //save product detail to local storage
           localStorage.setItem('product-detail', JSON.stringify(productData));
-          console.log(productData);
           //redirect to product detail page
           window.location.href = './produkt.html';
         }

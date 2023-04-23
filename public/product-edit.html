@@ -20,7 +20,7 @@
         <a href="./kontakt.html">Kontakt</a>
         <a href="./products.html">Produkty</a>
         <a href="./ucet.html">Prihlásenie</a>
-        <a href="./ucet.html">Registrácia</a>
+        <!-- <a href="./ucet.html">Registrácia</a> -->
 
         <div class="cart">
           <a style="text-decoration: none; color: black;" href="./cart.html"><img
@@ -75,9 +75,6 @@
     let productId = localStorage.getItem("productIdEdit");
     let sectionIdEdit = localStorage.getItem("productSectionIdEdit");
     product = JSON.parse(product);
-    console.log(product);
-    console.log(productId);
-    console.log(sectionIdEdit);
 
     //set product info to html
     const img = document.getElementById("product-image-preview");

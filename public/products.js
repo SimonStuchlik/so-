@@ -42,7 +42,6 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
       });
 
       // build HTML for products
-      console.log(productsList, 'products');
       productElement.innerHTML = productsList.map((product) => `
       <div class="frame">
         <img class="sell_img" id="section__button--${product.id}" src="${product.img}" alt="${product.name}">
@@ -81,7 +80,6 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
           querySnapshot.forEach((doc) => {
             products.push({ ...doc.data() });
           })
-          console.log(products, 'filtered products');
           //display filtered products
           productElement.innerHTML = products.map((product) => `
         <div class="frame">
@@ -112,7 +110,6 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
       // add to cart
       productsS.addEventListener('click', (e) => {
         if (e.target.classList.contains('wiew_button')) {
-          console.log('add to cart');
           //get product details
           const productId = e.target.id.split('--')[1];
           const product = products.find((product) => product.id === productId);
@@ -146,7 +143,6 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
           console.log('show product detail');
           //get product details
           const productId = e.target.id.split('--')[1];
-          console.log(productId);
           const product = productsList.find((product) => product.id === productId);
           //reset product detail
           localStorage.removeItem('product-detail');
@@ -160,7 +156,6 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
           };
           //save product detail to local storage
           localStorage.setItem('product-detail', JSON.stringify(productData));
-          console.log(productData);
           //redirect to product detail page
           window.location.href = './produkt.html';
         }
@@ -171,7 +166,6 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
         //only capture first change
         e.stopImmediatePropagation();
         const category = productSec.value;
-        console.log(category, 'change');
         if (category === 'default') {
           // show all products if no category selected
           productElement.innerHTML = productsList.map((product) => `

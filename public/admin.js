@@ -99,7 +99,6 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
                         localStorage.setItem('productEdit', JSON.stringify(doc.data()));
                         localStorage.setItem('productSectionIdEdit', productSectionId);
                         localStorage.setItem('productIdEdit', productId);
-                        console.log('document data:', doc.data());
                         window.location.href = 'product-edit.html';
                     } else {
                         console.log('no such document');
@@ -121,10 +120,8 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
         
                 let imageName = decodedUrl.substring(decodedUrl.lastIndexOf('/') + 1);
                 imageName = imageName.split('?')[0];
-                console.log(imageName);
                 const storageRef = sRef(storage, 'product-images/' + imageName);
                 deleteDoc(productRef).then(() => {
-                    console.log('db deleted', productId, productSectionId);
                     deleteObject(storageRef).then(() => {
                         console.log('storage deleted');
                         window.location.reload();

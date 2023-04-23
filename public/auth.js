@@ -28,7 +28,6 @@ function emailValidation(email) {
 
   signupForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    console.log("test");
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 

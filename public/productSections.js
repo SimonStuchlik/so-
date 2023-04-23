@@ -24,11 +24,8 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
       querySnapshot.forEach((doc) => {
         products.push({ id: doc.id, ...doc.data() });
       });
-  
-      console.log(`Products in ${productSections[index].name}: `, products);
     });
   });
-    console.log(productSectionIds);
     productsS.innerHTML = productSections.map((productSection) => `
         <div class="card">
             <h3 class="card-title">${productSection.name}</h3>
@@ -49,7 +46,6 @@ productsS.addEventListener('click', (e) => {
                 test.push(doc.data());
             })
             localStorage.setItem('products', JSON.stringify(test));
-            console.log(test);
             window.location.href = 'eshop.html';
         });
     }
