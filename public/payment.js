@@ -79,7 +79,7 @@ orderForm.addEventListener('submit', event => {
         SecureToken : "0f4b8481-4031-4787-af23-5db13db767c5", //password 36DE7632C118CA400453D19A5C5B0EABEDBA
         To : email,
         From : "zilina.pilar@gmail.com",
-        Subject : "This is the subject",
+        Subject : "Objednávka",
         Body : `<!DOCTYPE html>
 
         <html lang="en" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
