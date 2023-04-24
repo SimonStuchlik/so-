@@ -37,7 +37,7 @@
 
         <main>
             <h1>Košík</h1>
-
+    
             <table>
                 <thead>
                     <tr>
@@ -49,23 +49,27 @@
                 </thead>
                 <tbody id="cart-items"></tbody>
             </table>
-
+    
             <form id="order-form">
                 <h2>Vyplňte údaje pre doručenie</h2>
                 <label for="name">Meno a priezvisko:</label>
                 <input type="text" id="name" name="name" required>
-
+    
                 <label for="address">Adresa doručenia:</label>
                 <input type="text" id="address" name="address" required>
-
+    
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+    
                 <label for="phone">Telefónne číslo:</label>
                 <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
-
+    
                 <button type="submit">Objednať</button>
             </form>
         </main>
+    
 
-
+        <script src="https://smtpjs.com/v3/smtp.js"></script>        
         <script type="module" src="./payment.js"></script>
     </body>
 </html>

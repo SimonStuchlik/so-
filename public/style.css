@@ -894,7 +894,8 @@ thead {
   background-color: #f2f2f2;
 }
 
-th, td {
+th,
+td {
   text-align: center;
   padding: 10px;
 }
@@ -927,7 +928,9 @@ th {
   margin-bottom: 10px;
 }
 
-#order-form input[type="text"], #order-form input[type="tel"] {
+#order-form input[type="text"],
+#order-form input[type="tel"],
+#order-form input[type="email"] {
   width: 100%;
   padding: 10px;
   margin-bottom: 20px;
@@ -988,7 +991,8 @@ thead {
   background-color: #eee;
 }
 
-th, td {
+th,
+td {
   text-decoration: none;
   border: 1px solid #ccc;
   padding: 0.5rem;
