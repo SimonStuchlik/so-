@@ -73,9 +73,9 @@ onSnapshot(productSectionsRef, (querySnapshot) => {
                     <img class="cart-item-image" src="${product.img}" width="100" height="100">
                     
                     <span class="cart-item-title">${product.name}</span>
-                    <span class="cart-item-price" id="section__id--${category}">${product.price}</span>
-                    <button class="btn btn-primary" type="button" id="edit__button--${product.id}">EDIT</button>
-                    <button class="btn btn-danger" type="button" id="delete__button--${product.id}">REMOVE</button>
+                    <span class="cart-item-price" id="section__id--${category}">${product.price}€</span>
+                    <button class="btn btn-primary" type="button" id="edit__button--${product.id}">Upraviť</button>
+                    <button class="btn btn-danger" type="button" id="delete__button--${product.id}">Odstrániť</button>
 
                 </div>
                 `).join('');
